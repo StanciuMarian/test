@@ -1,0 +1,19 @@
+# Custom Juice Shop profile for CTF *training* (loaded on top of config/default.yml via NODE_ENV=training).
+# Same as the built-in "ctf" profile, but keeps hints and the interactive Hacking Instructor tutorials
+# on, so that newcomers can learn. For a competitive event, switch NODE_ENV to "ctf" in docker-compose.yml.
+application:
+  logo: JuiceShopCTF_Logo.png
+  favicon: favicon_ctf.ico
+  theme: neon-fire
+  showVersionNumber: false
+  showGitHubLinks: false
+  localBackupEnabled: true
+  welcomeBanner:
+    showOnFirstStart: true
+challenges:
+  showHints: true
+  safetyMode: disabled
+hackingInstructor:
+  isEnabled: true
+ctf:
+  showFlagsInNotifications: true

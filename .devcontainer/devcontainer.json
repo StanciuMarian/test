@@ -1,0 +1,18 @@
+{
+  "name": "Juice Shop CTF Training",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "hostRequirements": {
+    "cpus": 2,
+    "memory": "4gb"
+  },
+  // Starts Juice Shop + CTFd and imports the challenges every time the codespace starts (safe to re-run).
+  "postStartCommand": "./scripts/start-all.sh",
+  "forwardPorts": [3000, 8000],
+  "portsAttributes": {
+    "3000": { "label": "Juice Shop", "onAutoForward": "notify" },
+    "8000": { "label": "CTFd scoreboard", "onAutoForward": "openBrowser" }
+  }
+}

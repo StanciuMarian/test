@@ -1,0 +1,33 @@
+# OWASP Juice Shop CTF training stack
+#   Juice Shop (vulnerable target): http://localhost:3000
+#   CTFd (scoreboard / flag submit): http://localhost:8000
+services:
+  juice-shop:
+    image: bkimminich/juice-shop:v20.3.0
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      # "training" = custom profile in juice-shop/training.yml: CTF flags + hints + tutorials.
+      # Use "ctf" instead for a competitive event (hints hidden, no tutorials).
+      NODE_ENV: ${JUICE_SHOP_PROFILE:-training}
+      # Secret used to derive the flag codes. Must match ctfKey in ctf/ctf.config.yml.
+      CTF_KEY: ${CTF_KEY:-change-me-juice-shop-ctf-key}
+    volumes:
+      - ./juice-shop/training.yml:/juice-shop/config/training.yml:ro
+
+  ctfd:
+    image: ctfd/ctfd:3.8.1
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      SECRET_KEY: ${CTFD_SECRET_KEY:-change-me-ctfd-secret}
+      UPLOAD_FOLDER: /var/uploads
+      # SQLite DB kept in the same volume as uploads (/var/uploads is owned by the ctfd user in the image)
+      DATABASE_URL: sqlite:////var/uploads/ctfd.db
+    volumes:
+      - ctfd-data:/var/uploads
+
+volumes:
+  ctfd-data:
