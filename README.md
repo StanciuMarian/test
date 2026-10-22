@@ -16,7 +16,21 @@ and a [CTFd](https://ctfd.io/) scoreboard where you submit flags and track your 
 - Docker with Docker Compose v2 (`docker compose version`)
 - `bash` and `curl` (on Windows, use WSL or Git Bash)
 
-## Quick start
+## Run in GitHub Codespaces (no install)
+
+Click **Code → Codespaces → Create codespace** on this repository. When the codespace starts, it runs
+[`scripts/start-all.sh`](scripts/start-all.sh), which starts Juice Shop and CTFd and imports the challenges.
+The first start takes a few minutes. The terminal then prints the CTFd admin password (also saved in `.env`).
+
+Open **Juice Shop (3000)** and **CTFd scoreboard (8000)** from the **Ports** tab. The links are private to your
+GitHub account. Keep them that way: Juice Shop is insecure on purpose.
+
+Stop the codespace when you're done so it doesn't use up your free hours. Your CTFd scores are kept until you delete it.
+
+## Quick start (local)
+
+With Docker installed, `./scripts/start-all.sh` does all of the steps below in one go (it creates `.env`
+with random secrets if you don't have one). Or step by step:
 
 ```bash
 # 1. (Recommended) set your own secrets
