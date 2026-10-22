@@ -1,0 +1,8 @@
+# Config for juice-shop-ctf-cli (https://github.com/juice-shop/juice-shop-ctf).
+# ctfKey and juiceShopUrl are filled in by scripts/generate-ctfd-import.sh,
+# so the key always matches CTF_KEY in docker-compose.yml / .env.
+ctfFramework: CTFd
+juiceShopUrl: __JUICE_SHOP_URL__
+ctfKey: __CTF_KEY__
+# Training-friendly: hints are free to unlock in CTFd. Use "paid" for a competitive event.
+insertHints: free
